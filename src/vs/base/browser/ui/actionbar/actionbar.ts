@@ -268,11 +268,6 @@ export class ActionItem extends BaseActionItem {
 		this._updateChecked();
 	}
 
-	public focus(): void {
-		super.focus();
-		this.$e.domFocus();
-	}
-
 	public _updateLabel(): void {
 		if (this.options.label) {
 			this.$e.text(this.getAction().label);
@@ -318,11 +313,11 @@ export class ActionItem extends BaseActionItem {
 		if (this.getAction().enabled) {
 			this.builder.removeClass('disabled');
 			this.$e.removeClass('disabled');
-			this.$e.attr({ tabindex: 0 });
+			this.builder.attr({ tabindex: 0 });
 		} else {
 			this.builder.addClass('disabled');
 			this.$e.addClass('disabled');
-			DOM.removeTabIndexAndUpdateFocus(this.$e.getHTMLElement());
+			DOM.removeTabIndexAndUpdateFocus(this.builder.getHTMLElement());
 		}
 	}
 
